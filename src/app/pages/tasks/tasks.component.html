@@ -1,0 +1,108 @@
+
+<div class="container">
+
+
+    <div class="card mb-4">
+      <div class="card-header mx-auto text-center">
+          <i class="fas fa-table mr-1"></i>
+          <h2> Tasks  </h2>
+
+          <button class="btn btn-lg btn-primary" (click)="showForms()"> Create Task </button>
+
+      </div>
+      <div class="card-body">
+
+        <div *ngIf="showForm" class="card col-md-6 mx-auto">
+        <div class="card-header">
+          <h5 class="card-title">Tasks Form </h5>
+        </div>
+
+        <div class="card-body ">
+
+
+          <form class="form-signin" ngNativeValidate  [formGroup]="taskForm" (ngSubmit)="task()" id="forma">
+
+            <div class="form-group mt-1">
+              <input type="text" id="inputEmail" class="form-control" formControlName="description" placeholder="Description" autofocus>
+            </div>
+            <div *ngIf="taskForm.controls['description'].invalid && taskForm.touched">
+              <div class="alert alert-danger" role="alert">
+                  Task Description is required
+              </div>
+            </div>
+
+
+            <div class="form-group mt-1">
+              <label for="inputEmail" >Complete</label>
+              <input type="checkbox" id="inputEmail" class="form-check-input ml-3" formControlName="complete" placeholder="Description Task" autofocus>
+            </div>
+
+
+            <button *ngIf="addTask" [disabled]="!taskForm.valid" class="btn btn-lg btn-primary btn-block" type="submit"> Add </button>
+            <button *ngIf="!addTask" class="btn btn-lg btn-primary btn-block" type="submit"> Edit </button>
+
+          </form>
+
+        </div>
+      </div>
+
+        <div class="mt-1 mb-1">
+          <input class="form-control" placeholder="Filter" name="description" type="text" [(ngModel)]="taskDescription"/>
+
+        </div>
+
+          <div class="table-responsive">
+
+
+
+              <table class="table table-bordered"  width="100%" cellspacing="0">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>User</th>
+                          <th>Description &nbsp; </th>
+
+                          <th>Complete</th>
+                          <th>Option</th>
+                      </tr>
+                  </thead>
+
+                  <tbody>
+
+                      <tr *ngFor="let item of tasks | paginate: config |filter: taskDescription; index as i">
+
+                          <td>{{item.idtask}}</td>
+                          <td>{{ item.iduser }}</td>
+                          <td>{{item.description}}</td>
+                          <td>
+                            <div class="text-center">
+                              <input class="form-check-input" type="checkbox" [(ngModel)]="item.complete"
+                              name= "miDataInterior" (change)="$event.target.checked ? add(item) : remove(item)">
+                            </div>
+                             </td>
+
+                          <td>
+                            <div *ngIf="!item.complete">
+                              <button class="btn btn-primary" (click)="modifyTask(item)"> Edit </button>
+                              <button class="btn btn-danger ml-1" (click)="deleteTask(item)"> Delete </button>
+                            </div>
+                            <div *ngIf="item.complete">
+                                <div>  <button class="btn btn-success"> Task Complete </button> </div>
+                            </div>
+
+                          </td>
+                      </tr>
+
+                  </tbody>
+              </table>
+              <div style="text-align: center;">
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+              </div>
+
+          </div>
+      </div>
+    </div>
+
+
+
+  </div>

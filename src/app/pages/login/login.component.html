@@ -1,0 +1,32 @@
+<body class="text-center">
+  <form class="form-signin" ngNativeValidate  [formGroup]="forma" (ngSubmit)="loginuser()" id="forma">
+<img class="mb-4" src="../../../assets/img/Angular_full_color_logo.svg.png" alt="" width="150" height="150">
+<h1 class="h3 mb-3 font-weight-normal">To Do Sign in</h1>
+<div class="form-group mt-1">
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="email" id="inputEmail" class="form-control" formControlName="email" placeholder="Email address" required autofocus>
+</div>
+<div *ngIf="forma.controls['email'].invalid && forma.touched">
+  <div class="alert alert-danger" role="alert">
+      Email is required
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" class="form-control" formControlName="password" placeholder="Password" required>
+</div>
+
+
+<div *ngIf="forma.controls['password'].invalid && forma.touched">
+  <div class="alert alert-danger" role="alert">
+      Password is required
+  </div>
+</div>
+
+
+<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+<button class="btn btn-lg btn-success btn-block" routerLink="/register">Register</button>
+<p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+</form>
+</body>

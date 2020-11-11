@@ -24,9 +24,14 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -119,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "todofrontend"
+    }
+  },
+  "defaultProject": "todofrontend",
+  "cli": {
+    "analytics": "7ba9c9cf-ae32-431e-965b-97c5884baa88"
+  }
 }

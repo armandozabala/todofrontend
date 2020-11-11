@@ -1,0 +1,51 @@
+<body class="text-center">
+  <form class="form-signin" ngNativeValidate  [formGroup]="forma" (ngSubmit)="registerUser()" id="forma">
+<img class="mb-4" src="../../../assets/img/Angular_full_color_logo.svg.png" alt="" width="150" height="150">
+<h1 class="h3 mb-3 font-weight-normal">Register</h1>
+
+<div class="form-group mt-1">
+  <label for="inputEmail" >Name</label>
+  <input type="text" id="inputEmail" class="form-control" formControlName="name" placeholder="Name" required autofocus>
+
+</div>
+
+<div *ngIf="forma.controls['name'].invalid && forma.touched">
+  <div class="alert alert-danger" role="alert">
+      Name is required
+  </div>
+</div>
+
+<div class="form-group mt-1">
+  <label for="inputEmail">Lastname</label>
+  <input type="text" id="inputEmail" class="form-control"  formControlName="lastname" placeholder="Lastname" required autofocus>
+</div>
+
+<div class="form-group mt-1">
+  <label for="inputEmail">Email address</label>
+  <input type="email" id="inputEmail" class="form-control"  formControlName="email" placeholder="Email address" required autofocus>
+
+</div>
+
+<div *ngIf="forma.controls['email'].invalid && forma.touched">
+  <div class="alert alert-danger" role="alert">
+      Email is required
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="inputPassword">Password</label>
+  <input type="password" id="inputPassword" class="form-control"  formControlName="password" placeholder="Password" required>
+
+</div>
+
+<div *ngIf="forma.controls['password'].invalid && forma.touched">
+  <div class="alert alert-danger" role="alert">
+      Password is required
+  </div>
+</div>
+
+
+<button class="btn btn-lg btn-success btn-block" type="submit">Register</button>
+<p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+</form>
+</body>
